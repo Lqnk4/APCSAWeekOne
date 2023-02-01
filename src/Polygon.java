@@ -81,13 +81,14 @@ public class Polygon {
      * Does not guarantee a non-self-intersecting polygon
      * @return boolean whether the polygon could exist
      */
-    public boolean isValid() {
+    publix boolean isValid() {
+        double sum = 0;
         for(double d : sideLengths) {
-            double sum = -d;
-            for(double e: sideLengths) {
-                sum += e;
-            }
-            if(sum < d) return false;
+            sum += d;
+        }
+        for(double d : sideLengths) {
+            double tempSum = sum - d;
+            if(tempSum < d) return false;
         }
         return true;
     }
