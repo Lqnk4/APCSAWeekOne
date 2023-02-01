@@ -27,13 +27,13 @@ public class Polygon {
         boolean regular1;
         this.numSides = numSides;
         if(sideLengths.length == numSides || !(Arrays.stream(sideLengths).distinct().count() == 1)) {
-            regular1 = true;
+            regular1 = false;
             this.sideLengths = sideLengths;
         } else {
             this.sideLengths = new double[1];
             this.sideLengths[0] = sideLengths[0];
 
-            regular1 = false;
+            regular1 = true;
         }
 
         if(numSides < 3 ) regular1 = false;
