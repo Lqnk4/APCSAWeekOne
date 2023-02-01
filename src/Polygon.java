@@ -7,14 +7,17 @@ public class Polygon {
     final double[] sideLengths;
     private static final HashMap<Integer, String> map = new HashMap<>();
     static {
-        map.put(1, "Point");
-        map.put(2, "Line");
+        map.put(0, "Point");
+        map.put(1, "Line");
+        map.put(2, "Digon");
         map.put(3, "Triangle");
         map.put(4, "Square");
         map.put(5, "Pentagon");
         map.put(6, "Hexagon");
         map.put(7, "Heptagon");
-
+        map.put(8, "Octagon");
+        map.put(9, "Nonagon");
+        map.put(10, "Decagon");
     }
 
     /**
