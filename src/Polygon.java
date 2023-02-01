@@ -85,6 +85,7 @@ public class Polygon {
      * @return boolean whether the polygon could exist
      */
     publix boolean isValid() {
+        if(numSides < 3) return false;
         double sum = 0;
         for(double d : sideLengths) {
             sum += d;
