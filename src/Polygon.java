@@ -115,7 +115,7 @@ public class Polygon {
     public String toString() {
         return "Your shape is a " + getShapeType() + " and it has " + numSides + " sides. \n" +
                 (sideLengths.length > 1  ? "It's side lengths are " + printArray(sideLengths) : "It has a side length of " + sideLengths[0]) + "\n" +
-                "It has a perimeter of " + calculatePerimeter() + " units. \n" +
+                "It has a perimeter of " + String.format("%.3f", calculatePerimeter()) + " units. \n" +
                 (isValid() ? "This is a valid Polygon." : "This is not a valid Polygon." + "\n");
     }
 
