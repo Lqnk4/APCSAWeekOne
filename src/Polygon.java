@@ -74,6 +74,9 @@ public class Polygon {
      * @return ShapeType
      */
     public String getShapeType() {
+        if(numSides >10 || numSides < 0) {
+            return "Unknown";
+        }
         return map.get(numSides);
     }
 
