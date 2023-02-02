@@ -53,7 +53,7 @@ public class Polygon {
     /**
      * Default Constructor
      */
-    Polygon() {
+    public Polygon() {
         this(3, 1);
     }
 
