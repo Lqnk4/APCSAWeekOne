@@ -1,3 +1,9 @@
+/**
+ * @file Polygon.java
+ *@author Aaryan Ilanchelian
+ *@date 2023/02/02
+*/
+
 import java.util.Arrays;
 import java.util.HashMap;
 
@@ -113,6 +119,7 @@ public class Polygon {
         return numSides * sideLengths[0];
     }
 
+    @Override
     /**
      * toString Implementation
      * @return Object Parameters in String form
