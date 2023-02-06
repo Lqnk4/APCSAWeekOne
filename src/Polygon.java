@@ -93,7 +93,7 @@ public class Polygon {
      * Does not guarantee a non-self-intersecting polygon
      * @return boolean whether the polygon could exist
      */
-    publix boolean isValid() {
+    public boolean isValid() {
         if(numSides < 3) {return false;}
         double sum = 0;
         for(double d : sideLengths) {
