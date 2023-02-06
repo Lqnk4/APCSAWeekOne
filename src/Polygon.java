@@ -94,7 +94,8 @@ public class Polygon {
      * @return boolean whether the polygon could exist
      */
     public boolean isValid() {
-        if(numSides < 3 || (sideLengths.length != 1 && sideLengths.length != numSides)) {return false;}
+        if(numSides < 3) {return false;}
+        if(isRegular()) {return true;}
         double sum = 0;
         for(double d : sideLengths) {
             sum += d;
