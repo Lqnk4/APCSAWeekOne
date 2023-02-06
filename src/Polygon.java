@@ -123,10 +123,6 @@ public class Polygon {
     }
 
     @Override
-    /**
-     * toString Implementation
-     * @return Object Parameters in String form
-     */
     public String toString() {
         return "Your shape is a " + getShapeType() + " and it has " + numSides + " sides. \n" +
                 (sideLengths.length > 1  ? "It's side lengths are " + printArray(sideLengths) : "It has a side length of " + sideLengths[0]) + "\n" +
