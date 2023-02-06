@@ -1,4 +1,3 @@
-import org.junit.*;
 public class PolygonTester {
     public static void main(String[] args) {
         Polygon poly = new Polygon(5, 1,1,1,1,1);
