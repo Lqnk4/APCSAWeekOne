@@ -1,46 +1,16 @@
 /**
  * {@code @file} Polygon.java
  *@author Aaryan Ilanchelian
- *{@code @date} 2023/02/02
+ *{@code @date} 2023/06/02
  */
 
-public class Polygon {
-    private int numSides;
-    private double sideLength;
-    private String shapeType;
-
-    /**
-     * Constructor for polygon with n sides
-     *
-     * @param numSides Number of Sides (if less than 3 will default to 3)
-     * @param sideLength SideLengths of each side (if positive will default to 1)
-     */
-    public Polygon(int numSides, double sideLength, String shapeType) {
-
-        this.numSides = numSides;
-        if(this.numSides < 3) {this.numSides = 3;}
-        this.sideLength = sideLength;
-        if(this.sideLength <= 0) {this.sideLength = 1;}
-        this.shapeType = shapeType;
-    }
+public record Polygon(int numSides, double sideLength, String shapeType) {
 
     /**
      * Default Constructor
      */
     public Polygon() {
-        this(3, 1, "triangle");
-    }
-
-    /**
-     * Gets the number of Sides
-     * @return numSides
-     */
-    public int getNumSides() {
-        return numSides;
-    }
-
-    public double getSideLength() {
-        return sideLength;
+        this(3,1,"triangle");
     }
 
     /**
@@ -49,30 +19,6 @@ public class Polygon {
      */
     public String getShapeType() {
         return shapeType;
-    }
-
-    /**
-     * Sets number of sides
-     * @param numSides input
-     */
-    public void setNumSides(int numSides) {
-        this.numSides = numSides;
-    }
-
-    /**
-     * Sets sideLength
-     * @param sideLength length of Sides
-     */
-    public void setSideLength(double sideLength) {
-        this.sideLength = sideLength;
-    }
-
-    /**
-     * Sets shapeType
-     * @param shapeType string to set shape to
-     */
-    public void setShapeType(String shapeType) {
-        this.shapeType = shapeType;
     }
 
     /**
@@ -92,6 +38,14 @@ public class Polygon {
     }
 
     /**
+     * Calculates area of the shape of a regular polygon object
+     * @return Polygon Object Area
+     */
+    public double calculateArea() {
+        return numSides * sideLength * sideLength /(4 * Math.tan(Math.PI / numSides));
+    }
+
+    /**
      * String representation of polygon object
      * @return String containing relevant info
      */
@@ -101,13 +55,5 @@ public class Polygon {
                 "It has a side length of " + sideLength + "\n" +
                 "It has a perimeter of " + String.format("%.3f", calculatePerimeter()) + " units. \n" +
                 (isValid() ? "This is a valid Polygon." : "This is not a valid Polygon.") + "\n";
-    }
-
-    /**
-     * Calculates area of the shape of a regular polygon object
-     * @return Polygon Object Area
-     */
-    public double calculateArea() {
-        return numSides * sideLength * sideLength /(4 * Math.tan(Math.PI / numSides));
     }
 }
