@@ -51,9 +51,6 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      */
     @Override
     public String toString() {
-        return "Your shape is a " + shapeType + " and it has " + numSides + " sides. \n" +
-                "It has a side length of " + sideLength + "\n" +
-                "It has a perimeter of " + String.format("%.3f", calculatePerimeter()) + " units. \n" +
-                (isValid() ? "This is a valid Polygon." : "This is not a valid Polygon.") + "\n";
+        return "Your shape is a %s and it has %d sides. \nIt has a side length of %s\nIt has a perimeter of %s units. \nThis is %s a valid Polygon\n".formatted(shapeType, numSides, sideLength, String.format("%.3f", calculatePerimeter()), isValid() ? "" : "not");
     }
 }
