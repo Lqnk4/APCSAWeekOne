@@ -1,8 +1,8 @@
 /**
- * @file Polygon.java
+ * {@code @file} Polygon.java
  *@author Aaryan Ilanchelian
- *@date 2023/02/02
-*/
+ *{@code @date} 2023/02/02
+ */
 
 public class Polygon {
     private int numSides;
@@ -12,12 +12,15 @@ public class Polygon {
     /**
      * Constructor for polygon with n sides
      *
-     * @param numSides Number of Sides
-     * @param sideLength SideLengths of each side
+     * @param numSides Number of Sides (if less than 3 will default to 3)
+     * @param sideLength SideLengths of each side (if positive will default to 1)
      */
     public Polygon(int numSides, double sideLength, String shapeType) {
+
         this.numSides = numSides;
+        if(this.numSides < 3) {this.numSides = 3;}
         this.sideLength = sideLength;
+        if(this.sideLength <= 0) {this.sideLength = 1;}
         this.shapeType = shapeType;
     }
 
@@ -73,12 +76,11 @@ public class Polygon {
     }
 
     /**
-     * Checks if the polygon exists by comparing sums of n-1 sides with last side
-     * Does not guarantee a non-self-intersecting polygon
-     * @return boolean whether the polygon could exist
+     * Checks if the shape is still valid after mutations
+     * @return boolean whether the polygon has a minimum amount of sides and side length
      */
     public boolean isValid() {
-        return numSides >= 3;
+        return numSides >= 3 && sideLength > 0;
     }
 
     /**
@@ -98,7 +100,7 @@ public class Polygon {
         return "Your shape is a " + shapeType + " and it has " + numSides + " sides. \n" +
                 "It has a side length of " + sideLength + "\n" +
                 "It has a perimeter of " + String.format("%.3f", calculatePerimeter()) + " units. \n" +
-                (isValid() ? "This is a valid Polygon." : "This is not a valid Polygon." + "\n");
+                (isValid() ? "This is a valid Polygon." : "This is not a valid Polygon.") + "\n";
     }
 
     /**
