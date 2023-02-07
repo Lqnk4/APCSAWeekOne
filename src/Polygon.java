@@ -7,6 +7,19 @@
 public record Polygon(int numSides, double sideLength, String shapeType) {
 
     /**
+     * First Constructor
+     * @param numSides number of sides of the polygon
+     * @param sideLength the side length of all sides of the polygon
+     * @param shapeType the shape name of the polygon
+     */
+    public Polygon(int numSides, double sideLength, String shapeType) {
+        this.numSides = Math.max(numSides, 3);
+        this.sideLength = sideLength <= 0 ? 1 : sideLength;
+        this.shapeType = shapeType;
+
+    }
+
+    /**
      * Default Constructor
      */
     public Polygon() {
