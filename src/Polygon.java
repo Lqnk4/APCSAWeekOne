@@ -4,57 +4,28 @@
  *@date 2023/02/02
 */
 
-import java.util.Arrays;
-import java.util.HashMap;
-
 public class Polygon {
-    private final int numSides;
-    private final boolean regular;
-    final double[] sideLengths;
-    private static final HashMap<Integer, String> map = new HashMap<>();
-    static {
-        map.put(0, "Point");
-        map.put(1, "Line");
-        map.put(2, "Digon");
-        map.put(3, "Triangle");
-        map.put(4, "Square");
-        map.put(5, "Pentagon");
-        map.put(6, "Hexagon");
-        map.put(7, "Heptagon");
-        map.put(8, "Octagon");
-        map.put(9, "Nonagon");
-        map.put(10, "Decagon");
-    }
+    private int numSides;
+    private double sideLength;
+    private String shapeType;
 
     /**
      * Constructor for polygon with n sides
      *
      * @param numSides Number of Sides
-     * @param sideLengths SideLengths of each side
+     * @param sideLength SideLengths of each side
      */
-    public Polygon(int numSides, double... sideLengths) {
-        boolean regular1;
+    public Polygon(int numSides, double sideLength, String shapeType) {
         this.numSides = numSides;
-        if(sideLengths.length == numSides || !(Arrays.stream(sideLengths).distinct().count() == 1)) {
-            regular1 = false;
-            this.sideLengths = sideLengths;
-        } else {
-            this.sideLengths = new double[1];
-            this.sideLengths[0] = sideLengths[0];
-
-            regular1 = true;
-        }
-
-        if(numSides < 3 ) {regular1 = false;}
-
-        this.regular = regular1;
+        this.sideLength = sideLength;
+        this.shapeType = shapeType;
     }
 
     /**
      * Default Constructor
      */
     public Polygon() {
-        this(3, 1);
+        this(3, 1, "triangle");
     }
 
     /**
@@ -65,8 +36,8 @@ public class Polygon {
         return numSides;
     }
 
-    public double[] getSideLengths() {
-        return sideLengths;
+    public double getSideLength() {
+        return sideLength;
     }
 
     /**
@@ -74,18 +45,31 @@ public class Polygon {
      * @return ShapeType
      */
     public String getShapeType() {
-        if(numSides >10 || numSides < 0) {
-            return "Unknown";
-        }
-        return map.get(numSides);
+        return shapeType;
     }
 
     /**
-     * Gets weather the shape is regular
-     * @return isRegular
+     * Sets number of sides
+     * @param numSides input
      */
-    public boolean isRegular() {
-         return regular;
+    public void setNumSides(int numSides) {
+        this.numSides = numSides;
+    }
+
+    /**
+     * Sets sideLength
+     * @param sideLength length of Sides
+     */
+    public void setSideLength(double sideLength) {
+        this.sideLength = sideLength;
+    }
+
+    /**
+     * Sets shapeType
+     * @param shapeType string to set shape to
+     */
+    public void setShapeType(String shapeType) {
+        this.shapeType = shapeType;
     }
 
     /**
@@ -94,17 +78,7 @@ public class Polygon {
      * @return boolean whether the polygon could exist
      */
     public boolean isValid() {
-        if(numSides < 3) {return false;}
-        if(isRegular()) {return true;}
-        double sum = 0;
-        for(double d : sideLengths) {
-            sum += d;
-        }
-        for(double d : sideLengths) {
-            double tempSum = sum - d;
-            if(tempSum < d) {return false;}
-        }
-        return true;
+        return numSides >= 3;
     }
 
     /**
@@ -112,21 +86,17 @@ public class Polygon {
      * @return perimeter
      */
     public double calculatePerimeter() {
-        if(sideLengths.length > 1) {
-            double sum = 0;
-            for(double d : sideLengths) {
-                sum += d;
-            }
-            return sum;
-        }
-
-        return numSides * sideLengths[0];
+        return numSides * sideLength;
     }
 
+    /**
+     * String representation of polygon object
+     * @return String containing relevant info
+     */
     @Override
     public String toString() {
-        return "Your shape is a " + getShapeType() + " and it has " + numSides + " sides. \n" +
-                (sideLengths.length > 1  ? "It's side lengths are " + printArray(sideLengths) : "It has a side length of " + sideLengths[0]) + "\n" +
+        return "Your shape is a " + shapeType + " and it has " + numSides + " sides. \n" +
+                "It has a side length of " + sideLength + "\n" +
                 "It has a perimeter of " + String.format("%.3f", calculatePerimeter()) + " units. \n" +
                 (isValid() ? "This is a valid Polygon." : "This is not a valid Polygon." + "\n");
     }
@@ -136,24 +106,6 @@ public class Polygon {
      * @return Polygon Object Area
      */
     public double calculateArea() {
-        if(!regular) {
-            return -1;
-        }
-        return numSides * sideLengths[0] * sideLengths[0] /(4 * Math.tan(Math.PI / numSides));
+        return numSides * sideLength * sideLength /(4 * Math.tan(Math.PI / numSides));
     }
-
-    /**
-     * Used to print the array of side Lengths for the toString method
-     * @param array to be printed
-     * @return Concatenated String of all objects in array
-     */
-    private String printArray(double[] array) {
-        StringBuilder result = new StringBuilder();
-        for(Object i : array) {
-            result.append(i).append(", ");
-        }
-        return result.toString();
-    }
-
-
 }
