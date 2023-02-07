@@ -28,6 +28,22 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
     }
 
     /**
+     * Gets a int of the Polygon number of sides
+     * @return numSides
+     */
+    public int getNumSides() {
+        return numSides;
+    }
+
+    /**
+     * Gets a double of the sidelength
+     * @return side length of polygon
+     */
+    public double getSideLength() {
+        return sideLength;
+    }
+
+    /**
      * Gets a String of the Polygon Shape name
      * @return ShapeType
      */
