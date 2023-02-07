@@ -13,7 +13,7 @@ public class Polygon {
      * Constructor for polygon with n sides
      *
      * @param numSides Number of Sides (if less than 3 will default to 3)
-     * @param sideLength SideLengths of each side (if positive will default to 1)
+     * @param sideLength SideLengths of each side (if nonpositive will default to 1)
      */
     public Polygon(int numSides, double sideLength, String shapeType) {
 
