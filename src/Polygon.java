@@ -66,7 +66,7 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @return perimeter
      */
     public double calculatePerimeter() {
-        return numSides * sideLength;
+        return getNumSides() * getSideLength();
     }
 
     /**
@@ -74,7 +74,7 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @return Polygon Object Area
      */
     public double calculateArea() {
-        return numSides * sideLength * sideLength /(4 * Math.tan(Math.PI / numSides));
+        return getNumSides() * getSideLength() * sideLength /(4 * Math.tan(Math.PI / numSides));
     }
 
     /**
@@ -83,6 +83,6 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      */
     @Override
     public String toString() {
-        return "Your shape is a %s and it has %d sides. \nIt has a side length of %s\nIt has a perimeter of %s units. \nThis is %s a valid Polygon\n".formatted(shapeType, numSides, sideLength, String.format("%.3f", calculatePerimeter()), isValid() ? "" : "not");
+        return "Your shape is a %s and it has %d sides. \nIt has a side length of %s\nIt has a perimeter of %s units. \nThis is %s a valid Polygon\n".formatted(shapeType, getNumSides(), getSideLength(), String.format("%.3f", calculatePerimeter()), isValid() ? "" : "not");
     }
 }
