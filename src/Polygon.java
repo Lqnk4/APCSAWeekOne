@@ -13,7 +13,7 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @param shapeType the shape name of the polygon
      */
     public Polygon(int numSides, double sideLength, String shapeType) {
-        boolean valid = numSides >= 3 || sideLength > 0;
+        boolean valid = numSides >= 3 && sideLength > 0;
         this.numSides = valid ? numSides : 3;
         this.sideLength = valid ? sideLength : 1;
         this.shapeType = valid ? shapeType : "triangle";
