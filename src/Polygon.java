@@ -32,6 +32,7 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @return numSides
      */
     public int getNumSides() {
+        if(!isValid()) {numSides = 3};
         return numSides;
     }
 
@@ -40,6 +41,7 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @return side length of polygon
      */
     public double getSideLength() {
+        if(!isValid()) {sideLength = 1};
         return sideLength;
     }
 
