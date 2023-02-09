@@ -1,10 +1,18 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * {@code @file} Polygon.java
  *@author Aaryan Ilanchelian
  *{@code @date} 2023/06/02
  */
 
-public record Polygon(int numSides, double sideLength, String shapeType) {
+public class Polygon {
+
+    private int numSides;
+    private double sideLength;
+    private String shapeType;
+    private double area;
 
     /**
      * First Constructor
@@ -28,20 +36,20 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
     }
 
     /**
-     * Gets a int of the Polygon number of sides
+     * Gets an int of the Polygon number of sides
      * @return numSides
      */
     public int getNumSides() {
-        if(!isValid()) {numSides = 3};
+        if(!isValid()) {numSides = 3;}
         return numSides;
     }
 
     /**
-     * Gets a double of the sidelength
+     * Gets a double of the side-length
      * @return side length of polygon
      */
     public double getSideLength() {
-        if(!isValid()) {sideLength = 1};
+        if(!isValid()) {sideLength = 1;}
         return sideLength;
     }
 
@@ -58,10 +66,10 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
     }
     public void setNumSides(int shapeType) {
         if(shapeType < 3) {return;}
-        this.numSides = numSides;
+        this.numSides = shapeType;
     }
     public void setSideLength(double sideLength) {
-        if(sideLength <= 0) {return};
+        if(sideLength <= 0) {return;}
         this.sideLength = sideLength;
     }
 
@@ -78,7 +86,7 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @return perimeter
      */
     public double calculatePerimeter() {
-        return getNumSides() * getSideLength();
+        return round(getNumSides() * getSideLength(), 3);
     }
 
     /**
@@ -86,7 +94,10 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
      * @return Polygon Object Area
      */
     public double calculateArea() {
-        return getNumSides() * getSideLength() * sideLength /(4 * Math.tan(Math.PI / numSides));
+        return round(getNumSides() * getSideLength() * sideLength /(4 * Math.tan(Math.PI / numSides)), 3);
+    }
+    public double getArea() {
+        return calculateArea();
     }
 
     /**
@@ -96,5 +107,12 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
     @Override
     public String toString() {
         return "Your shape is a %s and it has %d sides. \nIt has a side length of %s\nIt has a perimeter of %s units. \nThis is %s a valid Polygon\n".formatted(shapeType, getNumSides(), getSideLength(), String.format("%.3f", calculatePerimeter()), isValid() ? "" : "not");
+    }
+
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        return new BigDecimal(Double.toString(value)).setScale(places, RoundingMode.HALF_UP).doubleValue();
+
     }
 }
