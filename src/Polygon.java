@@ -52,6 +52,18 @@ public record Polygon(int numSides, double sideLength, String shapeType) {
     public String getShapeType() {
         return shapeType;
     }
+    
+    public void setShapeName(String shapeType) {
+        this.shapeType = shapeType;
+    }
+    public void setNumSides(int shapeType) {
+        if(shapeType < 3) {return;}
+        this.numSides = numSides;
+    }
+    public void setSideLength(double sideLength) {
+        if(sideLength <= 0) {return};
+        this.sideLength = sideLength;
+    }
 
     /**
      * Checks if the shape is still valid after mutations
